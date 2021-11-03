@@ -29,7 +29,7 @@
 
         <Label Content="RenderPage with Memory Device Context" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGoldenrodYellow"/>
 
-        <Image  x:Name="imageMemDC" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Image  x:Name="imageMemDC" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,56"/>
 
         <StackPanel Grid.Row="5" Orientation="Horizontal">
             <TextBox x:Name="searchValueTextBox" Text="Enter value to search"   VerticalAlignment="Center" Width="150"/>
@@ -40,5 +40,6 @@
         <Button Content="Search" Grid.Row="6" Click="DoSearch_Click"/>
 
         <TextBox x:Name="searchResultLabel" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" />
+        <Button Content="Button" HorizontalAlignment="Right" Margin="0,338,233,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

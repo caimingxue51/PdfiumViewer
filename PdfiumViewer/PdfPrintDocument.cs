@@ -146,8 +146,8 @@ namespace PdfiumViewer
                 }
                 else
                 {
-                    left = -e.PageSettings.HardMarginX;
-                    top = -e.PageSettings.HardMarginY;
+                    left = -e.PageSettings.HardMarginX + (_settings.PrintHard == null ? 0: _settings.PrintHard.HardMarginX);
+                    top = -e.PageSettings.HardMarginY + (_settings.PrintHard == null ? 0 : _settings.PrintHard.HardMarginY);
                     width = e.PageBounds.Width;
                     height = e.PageBounds.Height;
                 }

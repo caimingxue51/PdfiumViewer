@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PdfiumViewer.Demo;
+using System;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -132,5 +134,59 @@ namespace PdfiumViewer.WPFDemo
             searchResultLabel.Text = sb.ToString();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string printerName = "PDD-150";
+            string fileName = "c:/tmp/b.pdf";
+            int width = 285;
+            int height = 78;
+            int landscape = 0;
+            try
+            {
+                // Create the printer settings for our printer
+                var printerSettings = new PrinterSettings
+                {
+                    PrinterName = printerName,
+                    //Copies = (short)copies,
+                    //LandscapeAngle = 0
+                    // Duplex = Duplex.Vertical 双面打印开关
+                };
+
+                // Create our page settings for the paper size selected
+                var pageSettings = new PageSettings(printerSettings)
+                {
+                    Margins = new Margins(100, 100, 100, 100),
+
+                };
+                //自定义分页
+                PaperSize paperSize = new PaperSize("Custom", width, height);
+                paperSize.RawKind = (int)PaperKind.Custom;
+
+                pageSettings.PaperSize = paperSize;
+                pageSettings.Landscape = (landscape > 0);
+
+
+                // Now print the PDF document
+                using (PdfDocument document = PdfDocument.Load(fileName))
+                {
+                    using (var printDocument = document.CreatePrintDocument(new PdfPrintSettings(PdfPrintMode.CutMargin,null,new PdfPrintHard(5,-1))))
+                    {
+                        printDocument.DocumentName = "GMP 打印";
+                        printDocument.PrintController = new StandardPrintController();
+                        printDocument.PrinterSettings = printerSettings;
+                        printDocument.DefaultPageSettings = pageSettings;
+                        printerSettings.Copies = 1;
+                        
+                        printDocument.Print();
+
+                    }
+                }
+            
+            }
+            catch
+            {
+                Console.WriteLine("打印异常");
+            }
+        }
     }
 }

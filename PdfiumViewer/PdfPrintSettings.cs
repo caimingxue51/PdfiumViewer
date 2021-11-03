@@ -20,6 +20,8 @@ namespace PdfiumViewer
         /// </summary>
         public PdfPrintMultiplePages MultiplePages { get; }
 
+        public PdfPrintHard PrintHard { get; }
+
         /// <summary>
         /// Creates a new instance of the PdfPrintSettings class.
         /// </summary>
@@ -30,6 +32,13 @@ namespace PdfiumViewer
         {
             Mode = mode;
             MultiplePages = multiplePages;
+        }
+
+        public PdfPrintSettings(PdfPrintMode mode, PdfPrintMultiplePages multiplePages, PdfPrintHard printHard)
+        {
+            Mode = mode;
+            MultiplePages = multiplePages;
+            PrintHard = printHard;
         }
     }
 }
